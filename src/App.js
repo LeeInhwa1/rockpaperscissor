@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import Box from "./component/Box.js"
 
 // 1. 박스 2개 ( 타이틀, 사진정보, 결과)
 // 2. 가위 바위 보 버튼 생성
@@ -9,11 +9,19 @@ import './App.css';
 // 6. 승패 결과에 따른 테두리 색 변경 (이기면-초록, 지면-빨강, 비기면-검정)
 
 function App() {
-  return (
-    <div>
-
-    </div>
-  );
+    return (
+        <div>
+            <div className="main">
+                <Box title={"You"}></Box>
+                <Box title={"Computer"}></Box>
+            </div>
+            <div className="main">
+                <button>가위</button>
+                <button>바위</button>
+                <button>보</button>
+            </div>
+        </div>
+    );
 }
 
 export default App;
