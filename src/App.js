@@ -26,17 +26,31 @@ const choice = {
 }
 
 function App() {
-    let [userSelect, setUserSelect] = useState(null);
+    const [userSelect, setUserSelect] = useState(null);
+    const [computerSelect, setComputerSelect] = useState(null);
 
     const play = (userChoice) => {
         console.log("선택됨", userChoice);
         setUserSelect(choice[userChoice]);
+
+        let computerChoice = randomChoice();
+        setComputerSelect(computerChoice);
+    }
+
+    const randomChoice = () => {
+        let itemArray = Object.keys(choice); // 객체에 키값만 뽑아서 array 형태로 만들어줌
+
+        let randomItem = Math.floor(Math.random() * itemArray.length);
+
+        let final = itemArray[randomItem];
+        console.log("final", final);
+        return choice[final];
     }
     return (
         <div>
             <div className="main">
                 <Box title={"You"} item={userSelect}></Box>
-                {/*<Box title={"Computer"}></Box>*/}
+                <Box title={"Computer"} item={computerSelect}></Box>
             </div>
             <div className="main">
                 {/*리액트 내에서 함수를 선언할때 콜백 형태로 넣어주어야 첫 로딩시 함수가 실행 안됨*/}
