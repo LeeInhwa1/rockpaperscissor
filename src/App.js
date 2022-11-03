@@ -1,4 +1,5 @@
 import './App.css';
+import {useState} from "react";
 import Box from "./component/Box.js"
 
 // 1. 박스 2개 ( 타이틀, 사진정보, 결과)
@@ -25,14 +26,17 @@ const choice = {
 }
 
 function App() {
+    let [userSelect, setUserSelect] = useState(null);
+
     const play = (userChoice) => {
         console.log("선택됨", userChoice);
+        setUserSelect(choice[userChoice]);
     }
     return (
         <div>
             <div className="main">
-                <Box title={"You"}></Box>
-                <Box title={"Computer"}></Box>
+                <Box title={"You"} item={userSelect}></Box>
+                {/*<Box title={"Computer"}></Box>*/}
             </div>
             <div className="main">
                 {/*리액트 내에서 함수를 선언할때 콜백 형태로 넣어주어야 첫 로딩시 함수가 실행 안됨*/}
