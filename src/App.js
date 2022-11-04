@@ -28,6 +28,7 @@ const choice = {
 function App() {
     const [userSelect, setUserSelect] = useState(null);
     const [computerSelect, setComputerSelect] = useState(null);
+    const [result, setResult] = useState(null);
 
     const play = (userChoice) => {
         console.log("선택됨", userChoice);
@@ -35,6 +36,18 @@ function App() {
 
         let computerChoice = randomChoice();
         setComputerSelect(computerChoice);
+
+        setResult(judgement(choice[userChoice], computerChoice));
+    }
+
+    const judgement = (user, computer) => {
+        console.log(user, computer);
+
+        if (user.name === computer.name) {
+            return "tie";
+        } else if (user.name === "Rock") return computer.name === "Scissors" ? "win" : "lose";
+        else if (user.name === "Scissors") return computer.name === "Paper" ? "win" : "lose";
+        else if (user.name === "Paper") return computer.name === "Rcok" ? "win" : "lose";
     }
 
     const randomChoice = () => {
@@ -49,8 +62,8 @@ function App() {
     return (
         <div>
             <div className="main">
-                <Box title={"You"} item={userSelect}></Box>
-                <Box title={"Computer"} item={computerSelect}></Box>
+                <Box title={"You"} item={userSelect} result={result}></Box>
+                <Box title={"Computer"} item={computerSelect} result={result}></Box>
             </div>
             <div className="main">
                 {/*리액트 내에서 함수를 선언할때 콜백 형태로 넣어주어야 첫 로딩시 함수가 실행 안됨*/}
